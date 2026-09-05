@@ -9,3 +9,6 @@ explore.html
 concept-a.html
 concept-b.html
 concept-c.html
+
+.vercel
+.env*
