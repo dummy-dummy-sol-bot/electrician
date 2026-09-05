@@ -1,0 +1,11 @@
+# deploy the site from index.html + assets/ only
+node_modules/
+screens/
+.vercel/
+package.json
+package-lock.json
+*.js
+explore.html
+concept-a.html
+concept-b.html
+concept-c.html

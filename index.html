@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ELECTRICIAN — Meme Coin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFE500; --yellow-2:#F5C400; --ink:#0B0B0C; --paper:#FDFDF6;
+    --red:#E63946; --blue:#2A6FDB; --green:#2ECC71;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    height:100dvh;overflow:hidden;background:var(--ink);
+    font-family:'Barlow Condensed',system-ui,sans-serif;color:var(--ink);
+    background:repeating-linear-gradient(45deg, var(--yellow) 0 26px, var(--ink) 26px 52px);
+  }
+  /* placard plate */
+  .plate{
+    position:fixed;inset:clamp(10px,2.2vw,34px);z-index:2;
+    background:var(--paper);
+    border:clamp(3px,.5vw,6px) solid var(--ink);
+    box-shadow:0 24px 80px rgba(0,0,0,.55), inset 0 0 0 clamp(2px,.35vw,4px) var(--yellow);
+    display:flex;flex-direction:column;align-items:center;
+    padding:clamp(12px,2.2vh,26px) clamp(14px,3vw,44px);
+    overflow:hidden;
+  }
+  /* corner bolts */
+  .plate .corner{position:absolute;color:var(--ink);width:clamp(16px,2vw,28px);pointer-events:none;
+    animation:boltFlicker 5s infinite}
+  .plate .corner.tl{top:clamp(8px,1.4vw,16px);left:clamp(8px,1.4vw,16px)}
+  .plate .corner.tr{top:clamp(8px,1.4vw,16px);right:clamp(8px,1.4vw,16px);animation-delay:1.1s}
+  .plate .corner.bl{bottom:clamp(8px,1.4vw,16px);left:clamp(8px,1.4vw,16px);animation-delay:2.2s}
+  .plate .corner.br{bottom:clamp(8px,1.4vw,16px);right:clamp(8px,1.4vw,16px);animation-delay:3.3s}
+  @keyframes boltFlicker{0%,100%{opacity:1} 43%{opacity:1} 45%{opacity:.15} 47%{opacity:1} 69%{opacity:.3} 71%{opacity:1}}
+  /* beacon */
+  .beacon{display:flex;flex-direction:column;align-items:center;gap:clamp(1px,.3vh,4px);margin-top:clamp(0px,.6vh,6px)}
+  .lamp{position:relative;width:clamp(22px,2.6vw,36px);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 38% 35%, #FFF6A8, var(--yellow) 55%, var(--yellow-2));
+    border:3px solid var(--ink);
+    animation:beacon 1.6s ease-in-out infinite;
+  }
+  .lamp::after{content:'';position:absolute;inset:-30%;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,229,0,.55) 0%, transparent 70%);z-index:-1;
+    animation:beacon 1.6s ease-in-out infinite}
+  @keyframes beacon{0%,100%{box-shadow:0 0 6px rgba(255,229,0,.4)}50%{box-shadow:0 0 26px rgba(255,229,0,.95)}}
+  .warn{font-family:'Anton',Impact,sans-serif;font-weight:400;letter-spacing:.08em;
+    font-size:clamp(20px,3.4vw,42px);line-height:1;text-transform:uppercase;text-align:center;
+    color:var(--ink);text-shadow:clamp(1px,.15vw,2px) clamp(1px,.15vw,2px) 0 var(--paper), clamp(2px,.3vw,4px) clamp(2px,.3vw,4px) 0 var(--yellow)}
+  .warnsub{font-family:'IBM Plex Mono',monospace;font-weight:600;letter-spacing:.34em;
+    font-size:clamp(7px,.9vw,11px);color:var(--ink);text-transform:uppercase}
+  /* hazard triangle with character */
+  .tri{position:relative;width:min(26vh,30vw,220px);aspect-ratio:1;margin:clamp(3px,.9vh,10px) 0 0}
+  .tri .outer{position:absolute;inset:0;clip-path:polygon(50% 0, 100% 100%, 0 100%);background:var(--ink)}
+  .tri .inner{position:absolute;inset:clamp(4px,.6vw,8px);clip-path:polygon(50% 0, 100% 100%, 0 100%);
+    background:linear-gradient(180deg, var(--yellow), var(--yellow-2))}
+  .tri img{position:absolute;left:50%;bottom:4%;width:66%;transform:translateX(-50%);
+    filter:drop-shadow(0 clamp(2px,.4vw,6px) clamp(2px,.6vw,8px) rgba(0,0,0,.28))}
+  .tri .bolt{position:absolute;top:2%;left:50%;transform:translateX(-50%);width:12%;color:var(--ink);
+    animation:boltFlicker 3s infinite}
+  /* title */
+  .title{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;
+    font-size:clamp(28px,5.8vw,80px);letter-spacing:.02em;line-height:.92;text-align:center;
+    color:var(--ink);margin-top:clamp(2px,.6vh,8px);
+    display:flex;align-items:center;gap:clamp(6px,1vw,16px)}
+  .title svg{width:clamp(14px,2vw,30px);flex:0 0 auto;color:var(--yellow-2);filter:drop-shadow(0 2px 0 var(--ink))}
+  .tagline{font-weight:700;letter-spacing:.26em;text-transform:uppercase;text-align:center;
+    font-size:clamp(9px,1.4vw,16px);margin-top:2px}
+  .sub{font-family:'IBM Plex Mono',monospace;font-weight:500;letter-spacing:.3em;text-align:center;
+    font-size:clamp(7px,.85vw,11px);color:#555;text-transform:uppercase;margin-top:1px}
+  /* action chips */
+  .chips{display:flex;align-items:stretch;gap:clamp(8px,1.4vw,18px);margin-top:clamp(6px,1.2vh,14px);
+    flex-wrap:wrap;justify-content:center}
+  .chip{display:flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
+    border:clamp(2px,.32vw,3px) solid var(--ink);border-radius:10px;
+    font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;
+    font-size:clamp(13px,1.6vw,19px);letter-spacing:.06em;color:var(--ink);
+    padding:clamp(7px,1vh,12px) clamp(14px,2vw,26px);
+    background:#fff;position:relative;
+    box-shadow:clamp(2px,.3vw,4px) clamp(2px,.3vw,4px) 0 var(--ink);
+    transition:transform .12s, box-shadow .12s, background .15s;
+  }
+  .chip svg{width:clamp(15px,1.7vw,22px);height:auto}
+  .chip:hover{transform:translate(-1px,-2px);box-shadow:clamp(4px,.5vw,6px) clamp(4px,.5vw,6px) 0 var(--ink)}
+  .chip:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+  .chip.xy{background:var(--ink);color:#fff}
+  .chip.xy svg{fill:#fff}
+  .chip.cpy{background:#fff}
+  .chip.buy{background:var(--yellow)}
+  .chip.buy::after{content:'';position:absolute;inset:2px;border:2px dashed rgba(0,0,0,.35);border-radius:6px;pointer-events:none}
+  .chip.done{background:var(--green)!important;color:#04240f!important}
+  .chip.done svg{fill:#04240f}
+  /* ===== MEME VOLTAGE gauge (placard-adapted readout) ===== */
+  .gauge{display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.6vw,20px);
+    width:min(440px,78%);background:var(--ink);border:clamp(2px,.3vw,3px) solid var(--ink);
+    border-radius:12px;padding:clamp(6px,1vh,11px) clamp(12px,1.8vw,24px);
+    box-shadow:clamp(2px,.3vw,4px) clamp(2px,.3vw,4px) 0 var(--ink);
+    margin-top:clamp(6px,1.2vh,14px)}
+  .gwrap{position:relative;width:clamp(64px,8.5vw,108px);aspect-ratio:2;overflow:hidden;flex:0 0 auto}
+  .gwrap .arc{position:absolute;inset:0;border-radius:50% 50% 0 0;
+    background:conic-gradient(from 180deg at 50% 100%, #333 0deg 36deg, var(--yellow) 36deg 118deg, #333 118deg 180deg);
+    -webkit-mask:radial-gradient(circle at 50% 100%, transparent 0 56%, #000 57% 72%, transparent 73%);
+            mask:radial-gradient(circle at 50% 100%, transparent 0 56%, #000 57% 72%, transparent 73%);}
+  .gwrap .needle{position:absolute;left:50%;bottom:0;width:2.5px;height:70%;
+    background:var(--red);transform-origin:50% 100%;border-radius:3px;
+    transform:translateX(-50%) rotate(-50deg);
+    animation:needle 4.5s ease-in-out infinite alternate}
+  .gwrap .needle::after{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+    width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 6px rgba(230,57,70,.8)}
+  @keyframes needle{to{transform:translateX(-50%) rotate(54deg)}}
+  .gmeta{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .gmeta b{font-family:'Anton',Impact,sans-serif;font-weight:400;letter-spacing:.06em;
+    font-size:clamp(13px,1.7vw,20px);color:var(--yellow);text-transform:uppercase;line-height:1}
+  .gmeta span{font-family:'IBM Plex Mono',monospace;font-size:clamp(7px,.9vw,10.5px);
+    color:rgba(255,255,255,.62);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+  .gmeta .bar{width:clamp(90px,12vw,170px);height:7px;margin-top:3px;border:1px solid rgba(255,255,255,.35);
+    border-radius:4px;overflow:hidden;background:rgba(255,255,255,.08)}
+  .gmeta .bar i{display:block;height:100%;width:90%;background:linear-gradient(90deg,var(--yellow-2),var(--yellow));
+    animation:charge 3s ease-in-out infinite alternate}
+  @keyframes charge{from{width:82%}to{width:96%}}
+  /* ===== visible CA under buttons ===== */
+  .castrip{margin-top:clamp(6px,1.2vh,14px);text-align:center;cursor:pointer;
+    border:clamp(1px,.2vw,2px) dashed rgba(0,0,0,.45);border-radius:9px;
+    padding:clamp(4px,.8vh,8px) clamp(10px,1.6vw,20px);
+    transition:background .15s, border-color .15s}
+  .castrip:hover{background:rgba(255,229,0,.18);border-color:var(--ink)}
+  .castrip .calbl{display:block;font-family:'IBM Plex Mono',monospace;font-weight:600;
+    font-size:clamp(6.5px,.85vw,9.5px);letter-spacing:.3em;color:#555;text-transform:uppercase;margin-bottom:3px}
+  .castrip .caaddr{display:block;font-family:'IBM Plex Mono',monospace;font-weight:600;
+    font-size:clamp(8px,1.05vw,12.5px);letter-spacing:.08em;color:var(--ink);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .castrip.done{background:var(--green)!important;border-color:var(--green)!important}
+  .castrip.done .calbl,.castrip.done .caaddr{color:#04240f}
+  /* risk */
+  .risk{margin-top:auto;text-align:center;font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(6.5px,.72vw,9px);letter-spacing:.12em;line-height:1.6;
+    color:#666;text-transform:uppercase;max-width:860px}
+  .risk b{color:var(--ink)}
+  /* ============ responsive ============ */
+  @media (max-width:640px){
+    .plate{inset:clamp(8px,2.4vw,16px);padding:clamp(8px,1.6vh,14px) clamp(12px,3vw,20px)}
+    .title{gap:5px;font-size:clamp(23px,5.4vw,40px)}
+    .warnsub{letter-spacing:.2em}
+    .sub{letter-spacing:.16em}
+    .tagline{letter-spacing:.18em;font-size:clamp(8px,3vw,11px)}
+    .chips{gap:7px;margin-top:clamp(5px,1vh,9px)}
+    .chip{font-size:clamp(11px,3.6vw,15px);padding:6px 12px;gap:6px}
+    .gauge{width:100%;gap:9px;padding:6px 10px;border-radius:9px;margin-top:clamp(5px,1vh,9px)}
+    .gwrap{width:clamp(50px,13vw,62px)}
+    .gmeta b{font-size:clamp(11px,3vw,13px)}
+    .gmeta span{font-size:6.5px;letter-spacing:.08em}
+    .gmeta .bar{width:clamp(64px,17vw,86px);height:5px}
+    .castrip{margin-top:clamp(5px,1vh,9px);padding:4px 6px}
+    .castrip .caaddr{font-size:clamp(7px,2vw,8.5px);letter-spacing:.03em}
+    .castrip .calbl{font-size:6px;letter-spacing:.22em}
+    .risk{letter-spacing:.05em}
+  }
+  @media (max-height:640px){
+    .plate{inset:clamp(6px,1.6vh,10px) clamp(10px,2.2vw,24px)}
+    .tri{width:min(22vh,22vw,150px);margin-top:2px}
+    .beacon{margin-top:0}
+    .title{font-size:clamp(20px,6vh,40px)}
+    .tagline{font-size:clamp(8px,1.4vh,12px)}
+    .gauge{margin-top:4px}
+    .castrip{margin-top:4px}
+    .risk{display:none}
+  }
+</style>
+</head>
+<body>
+  <main class="plate">
+    <svg class="corner tl" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-2 8 11-13h-7l1-7z"/></svg>
+    <svg class="corner tr" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-2 8 11-13h-7l1-7z"/></svg>
+    <svg class="corner bl" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-2 8 11-13h-7l1-7z"/></svg>
+    <svg class="corner br" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-2 8 11-13h-7l1-7z"/></svg>
+
+    <div class="beacon">
+      <div class="lamp"></div>
+      <span class="warn">Warning</span>
+      <span class="warnsub">HIGH-VOLTAGE MEME ENERGY</span>
+    </div>
+
+    <div class="tri">
+      <div class="outer"></div>
+      <div class="inner"></div>
+      <svg class="bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-2 8 11-13h-7l1-7z"/></svg>
+      <img src="assets/logo.png" alt="ELECTRICIAN character logo">
+    </div>
+
+    <h1 class="title">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-2 8 11-13h-7l1-7z"/></svg>
+      Electrician
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-2 8 11-13h-7l1-7z"/></svg>
+    </h1>
+    <p class="tagline">Powering a brighter meme future</p>
+    <p class="sub">WIRES TODAY · WEALTH TOMORROW</p>
+
+    <div class="chips">
+      <a class="chip xy" href="https://x.com/EEEElectrician" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z"/></svg>
+        Follow
+      </a>
+      <button class="chip cpy" id="cpyChip">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 6V4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-2V7a2 2 0 0 0-2-2H7Zm0 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H7Z"/></svg>
+        Copy CA
+      </button>
+      <a class="chip buy" href="https://pump.fun/coin/ALbaR4x2TMiiA4rz9zk5pkE16Q3gBcdxmw8GAzWpump" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-2 8 11-13h-7l1-7z"/></svg>
+        $BUY
+      </a>
+    </div>
+
+    <div class="gauge" aria-hidden="true">
+      <div class="gwrap">
+        <div class="arc"></div>
+        <div class="needle"></div>
+      </div>
+      <div class="gmeta">
+        <b>Meme Voltage</b>
+        <span>Circuit status: energized</span>
+        <div class="bar"><i></i></div>
+      </div>
+    </div>
+
+    <div class="castrip" id="caStrip" role="button" tabindex="0" aria-label="Copy contract address">
+      <span class="calbl">Contract address</span>
+      <span class="caaddr" id="caAddr">ALbaR4x2TMiiA4rz9zk5pkE16Q3gBcdxmw8GAzWpump</span>
+    </div>
+
+    <p class="risk"><b>Meme coin · entertainment only.</b> No intrinsic value, no promises, not financial advice. CA shown for informational purposes. Crypto can move fast and go to zero.</p>
+  </main>
+
+<script>
+  const CA='ALbaR4x2TMiiA4rz9zk5pkE16Q3gBcdxmw8GAzWpump';
+  const chip=document.getElementById('cpyChip');
+  const strip=document.getElementById('caStrip'), addr=document.getElementById('caAddr');
+  async function copyCA(){
+    try{await navigator.clipboard.writeText(CA);}catch(e){
+      const t=document.createElement('textarea');t.value=CA;document.body.appendChild(t);
+      t.select();document.execCommand('copy');t.remove();
+    }
+    return true;
+  }
+  chip.addEventListener('click',async()=>{
+    await copyCA();
+    chip.classList.add('done');chip.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"/></svg> Copied ✓';
+    setTimeout(()=>{
+      chip.classList.remove('done');
+      chip.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 6V4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-2V7a2 2 0 0 0-2-2H7Zm0 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H7Z"/></svg> Copy CA';
+    },1800);
+  });
+  strip.addEventListener('click',async()=>{
+    await copyCA();
+    strip.classList.add('done');addr.textContent=CA+' · copied ✓';
+    setTimeout(()=>{strip.classList.remove('done');addr.textContent=CA;},1800);
+  });
+  strip.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();strip.click();}
+  });
+</script>
+</body>
+</html>
